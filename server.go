@@ -1,8 +1,9 @@
 package main
 
 import (
+	"dvalai/dval/pkg/dvalai"
 	"net/http"
-	"regexp"
+	"os"
 
 	"github.com/labstack/echo/v4"
 )
@@ -15,12 +16,17 @@ func main() {
 
 // Struct for post request
 type PostRequest struct {
-	Data  string `json:"data"`
-	Regex string `json:"regex"`
+	Data       string             `json:"data"`
+	Validators []dvalai.Validator `json:"validators"`
 }
 
 type PostResponse struct {
-	Match bool `json:"match"`
+	ValidatorResponses []dvalai.ValidatorResponse `json:"validatorResponses"`
+}
+
+// OpenAI instance
+var openaiInstance = dvalai.DvalOpenAI{
+	OpenAIToken: os.Getenv("OPENAI_TOKEN"),
 }
 
 // e.POST("/", validate)
@@ -30,12 +36,15 @@ func validate(c echo.Context) error {
 	if err := c.Bind(req); err != nil {
 		return err
 	}
-	m, err := regexp.MatchString(req.Regex, req.Data)
-	if err != nil {
-		return err
+	resp := new(PostResponse)
+	for _, v := range req.Validators {
+		vResponse := dvalai.ValidatorResponse{Name: v.Name, Error: false}
+		if v.Type == "regex" {
+			resp.ValidatorResponses = append(resp.ValidatorResponses, dvalai.ValidateRegEx(vResponse, v, req.Data))
+		} else if v.Type == "genregex" {
+			resp.ValidatorResponses = append(resp.ValidatorResponses, openaiInstance.ValidateGenRegEx(vResponse, v, req.Data))
+		}
 	}
-	if m {
-		return c.JSON(http.StatusOK, PostResponse{Match: true})
-	}
-	return c.JSON(http.StatusOK, PostResponse{Match: false})
+
+	return c.JSON(http.StatusOK, resp)
 }
