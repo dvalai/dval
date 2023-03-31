@@ -41,9 +41,14 @@ func validate(c echo.Context) error {
 		vResponse := dvalai.ValidatorResponse{Name: v.Name, Error: false}
 		if v.Type == "regex" {
 			resp.ValidatorResponses = append(resp.ValidatorResponses, dvalai.ValidateRegEx(vResponse, v, req.Data))
-		} else if v.Type == "genregex" {
+		}
+		if v.Type == "genregex" {
 			resp.ValidatorResponses = append(resp.ValidatorResponses, dvalai.ValidateGenRegEx(openaiInstance, vResponse, v, req.Data))
 		}
+		if v.Type == "json" {
+			resp.ValidatorResponses = append(resp.ValidatorResponses, dvalai.ValidateJSON(vResponse, v, req.Data))
+		}
+
 	}
 
 	return c.JSON(http.StatusOK, resp)

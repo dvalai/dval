@@ -17,13 +17,13 @@ func TestValidateRegEx(t *testing.T) {
 		Rule: v.Rule,
 	}
 	vResponse = ValidateRegEx(vResponse, v, "abc")
-	if vResponse.Match != true {
-		t.Errorf("Expected true, got %v", vResponse.Match)
+	if vResponse.Valid != true {
+		t.Errorf("Expected true, got %v", vResponse.Valid)
 
 	}
 	vResponse = ValidateRegEx(vResponse, v, "abc123")
-	if vResponse.Match != false {
-		t.Errorf("Expected false, got %v", vResponse.Match)
+	if vResponse.Valid != false {
+		t.Errorf("Expected false, got %v", vResponse.Valid)
 
 	}
 }
@@ -52,14 +52,14 @@ func TestValidateGenRegEx(t *testing.T) {
 		Rule: v.Rule,
 	}
 	vResponse = ValidateGenRegEx(openai, vResponse, v, "johndoe@gmail.com")
-	if vResponse.Match != true {
+	if vResponse.Valid != true {
 		fmt.Println(vResponse)
-		t.Errorf("Expected true, got %v", vResponse.Match)
+		t.Errorf("Expected true, got %v", vResponse.Valid)
 
 	}
 	vResponse = ValidateGenRegEx(openai, vResponse, v, "invalidemail@test@gmail.comabcd")
-	if vResponse.Match != false {
-		t.Errorf("Expected false, got %v", vResponse.Match)
+	if vResponse.Valid != false {
+		t.Errorf("Expected false, got %v", vResponse.Valid)
 
 	}
 }

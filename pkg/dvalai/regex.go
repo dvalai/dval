@@ -36,22 +36,6 @@ func (d DvalOpenAI) GetRegularExpression(s string) (string, error) {
 	return resp.Choices[0].Text, nil
 }
 
-// Struct for ValidatorRequest
-type Validator struct {
-	Name string `json:"name"`
-	Type string `json:"type"` // "regex" or "genregex"
-	Rule string `json:"rule"`
-}
-
-// Struct for ValidatorResponse
-type ValidatorResponse struct {
-	Name     string `json:"name"`
-	Error    bool   `json:"error"`
-	ErrorMsg string `json:"errorMsg"`
-	Rule     string `json:"rule"`
-	Match    bool   `json:"match"`
-}
-
 func ValidateRegEx(vResponse ValidatorResponse, v Validator, data string) ValidatorResponse {
 	vResponse.Rule = v.Rule
 	m, err := regexp.MatchString(v.Rule, data)
@@ -60,7 +44,7 @@ func ValidateRegEx(vResponse ValidatorResponse, v Validator, data string) Valida
 		vResponse.ErrorMsg = err.Error()
 		return vResponse
 	}
-	vResponse.Match = m
+	vResponse.Valid = m
 	return vResponse
 }
 
