@@ -12,6 +12,10 @@ type DvalOpenAI struct {
 	OpenAIToken string
 }
 
+type GetRegularExpression interface {
+	GetRegularExpression(s string) (string, error)
+}
+
 func (d DvalOpenAI) GetRegularExpression(s string) (string, error) {
 	c := openai.NewClient(d.OpenAIToken)
 	ctx := context.Background()
@@ -60,9 +64,9 @@ func ValidateRegEx(vResponse ValidatorResponse, v Validator, data string) Valida
 	return vResponse
 }
 
-func (d DvalOpenAI) ValidateGenRegEx(vResponse ValidatorResponse, v Validator, data string) ValidatorResponse {
+func ValidateGenRegEx(d GetRegularExpression, vResponse ValidatorResponse, v Validator, data string) ValidatorResponse {
 	generatedRegex, err := d.GetRegularExpression(v.Rule)
-	vResponse.Rule = generatedRegex
+	v.Rule = generatedRegex
 	if err != nil {
 		vResponse.Error = true
 		vResponse.ErrorMsg = err.Error()

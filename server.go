@@ -42,7 +42,7 @@ func validate(c echo.Context) error {
 		if v.Type == "regex" {
 			resp.ValidatorResponses = append(resp.ValidatorResponses, dvalai.ValidateRegEx(vResponse, v, req.Data))
 		} else if v.Type == "genregex" {
-			resp.ValidatorResponses = append(resp.ValidatorResponses, openaiInstance.ValidateGenRegEx(vResponse, v, req.Data))
+			resp.ValidatorResponses = append(resp.ValidatorResponses, dvalai.ValidateGenRegEx(openaiInstance, vResponse, v, req.Data))
 		}
 	}
 
