@@ -42,8 +42,8 @@ func validate(c echo.Context) error {
 		if v.Type == "regex" {
 			resp.ValidatorResponses = append(resp.ValidatorResponses, dvalai.ValidateRegEx(vResponse, v, req.Data))
 		}
-		if v.Type == "genregex" {
-			resp.ValidatorResponses = append(resp.ValidatorResponses, dvalai.ValidateGenRegEx(openaiInstance, vResponse, v, req.Data))
+		if v.Type == "emailai" {
+			resp.ValidatorResponses = append(resp.ValidatorResponses, dvalai.ValidateEmailAI(openaiInstance, vResponse, v, req.Data))
 		}
 		if v.Type == "json" {
 			resp.ValidatorResponses = append(resp.ValidatorResponses, dvalai.ValidateJSON(vResponse, v, req.Data))

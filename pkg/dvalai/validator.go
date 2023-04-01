@@ -3,7 +3,7 @@ package dvalai
 // Struct for ValidatorRequest
 type Validator struct {
 	Name string `json:"name"`
-	Type string `json:"type"` // "regex", "genregex" or "json"
+	Type string `json:"type"` // "regex", "json" or "emailai"
 	Rule string `json:"rule,omitempty"`
 }
 
