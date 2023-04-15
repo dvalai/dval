@@ -1,6 +1,7 @@
 # dval
 
 ![Build and Test](https://github.com/dvalai/dval/actions/workflows/build-and-test.yml/badge.svg)
+![Snyk workflow](https://github.com/dvalai/dval/actions/workflows/snyk.yaml/badge.svg)
 
 ## Goal
 
