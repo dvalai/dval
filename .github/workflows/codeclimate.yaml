@@ -1,4 +1,4 @@
-name: test
+name: codeclimate
 on:
   push:
     branches: [main]
@@ -14,7 +14,7 @@ jobs:
           check-latest: true
           cache: true
       - run: go test ./... -coverprofile=c.out
-      - run: sed -i "s%github.com/dvalai/%%" c.out
+      - run: sed -i "s%dvalai/dval/%%" c.out
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v3.2.0
         with:
