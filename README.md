@@ -1,5 +1,7 @@
 # dval
 
+![Build and Test](https://github.com/dvalai/dval/actions/workflows/build-and-test.yml/badge.svg)
+
 ## Goal
 
 The ultimate goal of dval is to provide a simple, yet powerful, way to validate any data. Once the goal is reached it should be possible to send any data to dval and get a response back if the data is valid or not. The response should also return which validator are applicable.
