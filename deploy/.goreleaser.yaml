@@ -35,7 +35,8 @@ archives:
       - CHANGELOG*
 
 kos:
-  - tags:
+  - repository: ghcr.io/dvalai/dval
+    tags:
     - '{{.Version}}'
     - latest
     platforms:
