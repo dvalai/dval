@@ -36,10 +36,13 @@ archives:
 
 kos:
   - repository: ghcr.io/dvalai/dval
-    main: server.go
     tags:
     - '{{.Version}}'
     - latest
     platforms:
     - linux/amd64
     - linux/arm64
+    env:
+      - CGO_ENABLED=0
+      - GO111MODULE=on
+    main: server.go
