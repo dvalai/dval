@@ -42,7 +42,5 @@ kos:
     platforms:
     - linux/amd64
     - linux/arm64
-    env:
-      - CGO_ENABLED=0
-      - GO111MODULE=on
-    main: server.go
+    bare: true
+    preserve_import_paths: false
