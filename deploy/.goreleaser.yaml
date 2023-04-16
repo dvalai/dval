@@ -36,6 +36,7 @@ archives:
 
 kos:
   - repository: ghcr.io/dvalai/dval
+    main: server.go
     tags:
     - '{{.Version}}'
     - latest
