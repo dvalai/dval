@@ -31,4 +31,4 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - uses: ko-build/setup-ko@v0.6
-    - run: ko build -t ${{ env.VERSION }}
+    - run: ko build --bare -t ${{ env.VERSION }}
