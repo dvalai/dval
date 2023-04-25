@@ -1,7 +1,7 @@
 # dval
 
 ![Build and Test](https://github.com/dvalai/dval/actions/workflows/build-and-test.yml/badge.svg)
-![Release](https://github.com/dvalai/dval/actions/workflows/release.yml/badge.svg)
+![Release](https://github.com/dvalai/dval/actions/workflows/release.yaml/badge.svg)
 ![Snyk workflow](https://github.com/dvalai/dval/actions/workflows/snyk.yaml/badge.svg)
 [![Maintainability](https://api.codeclimate.com/v1/badges/579f91912aa045082328/maintainability)](https://codeclimate.com/github/dvalai/dval/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/579f91912aa045082328/test_coverage)](https://codeclimate.com/github/dvalai/dval/test_coverage)
